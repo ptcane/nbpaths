@@ -1,6 +1,6 @@
 # nbpaths
 
-This package addresses the issue described [here](https://stackoverflow.com/questions/15514593/importerror-no-module-named-when-trying-to-run-python-script/15622021#15622021) whereby local modules are not found in certain circumstances when using iPython notebooks.
+This package addresses the `ModuleNotFoundError` issue described [here](https://stackoverflow.com/questions/15514593/importerror-no-module-named-when-trying-to-run-python-script/15622021#15622021) where local modules in parent directories are not found when using iPython notebooks.
 
 It will add parent (and grandparent, etc) directories to `sys.path`. By default it will do this up the directory tree up to and inclusive of any directory which contains a `.gitignore` file (typically the project root).
 
