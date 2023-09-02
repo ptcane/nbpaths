@@ -23,20 +23,17 @@ def add_parents(stopfile=".gitignore"):
 
                 break
 
-    # avoid adding duplicate paths to sys.path
-    new_paths = [parent for parent in parents if str(parent) not in sys.path]
-
     # only add parents up to and including that which contains the stopfile
-    if stopfile_path:
-        new_paths = new_paths[: new_paths.index(stopfile_path) + 1]
+    nbpaths = parents[: parents.index(stopfile_path) + 1] if stopfile_path else parents            
 
-    paths_to_add = [str(path) for path in new_paths]
+    # avoid adding duplicate paths to sys.path
+    new_paths = [str(path) for path in nbpaths if str(path) not in sys.path]
 
     # reverse the path order so that parents closer to current file are checked first
     # insert in second position as the first entry in sys.path is the current directory
 
-    paths_to_add.reverse()
-    for path in paths_to_add:
+    new_paths.reverse()
+    for path in new_paths:
         sys.path.insert(1, path)
 
     return
